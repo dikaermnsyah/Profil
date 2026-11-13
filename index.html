@@ -1,0 +1,1755 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>m.DICKA.ERMANSYAH — Portofolio & Kisah SMK</title>
+    
+    <!-- Google Fonts: Poppins & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* =====================================================================
+           1. VARIABEL WARNA & TEMA (EDIT DI SINI UNTUK UBAH WARNA)
+           ===================================================================== */
+        :root {
+            /* Tema Terang (Default) */
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --bg-glass: rgba(255, 255, 255, 0.78);
+            --border-glass: rgba(255, 255, 255, 0.65);
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            
+            /* Aksen Gradasi Utama (Teal - Biru Modern) */
+            --accent-1: #0d9488; /* Teal */
+            --accent-2: #2563eb; /* Royal Blue */
+            --accent-gradient: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            
+            /* Bayangan & Radius */
+            --shadow-sm: 0 4px 6px -1px rgba(15, 23, 42, 0.05), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
+            --shadow-md: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+            --shadow-glow: 0 10px 30px -5px rgba(13, 148, 136, 0.35);
+            --radius-md: 14px;
+            --radius-lg: 22px;
+            --radius-full: 9999px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="dark"] {
+            /* Tema Gelap */
+            --bg-primary: #070b14;
+            --bg-secondary: #111827;
+            --bg-glass: rgba(17, 24, 39, 0.78);
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.35);
+            --shadow-md: 0 12px 30px -5px rgba(0, 0, 0, 0.55);
+            --shadow-glow: 0 10px 30px -5px rgba(37, 99, 235, 0.35);
+        }
+
+        /* =====================================================================
+           2. RESET & BASE STYLES
+           ===================================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.65;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            position: relative;
+        }
+
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.25;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+
+        /* Aksesibilitas Fokus Keyboard */
+        :focus-visible {
+            outline: 3px solid var(--accent-2);
+            outline-offset: 3px;
+            border-radius: 6px;
+        }
+
+        /* Dekorasi Latar Belakang Ambient */
+        .bg-blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(95px);
+            z-index: -1;
+            opacity: 0.42;
+            pointer-events: none;
+        }
+        .blob-1 {
+            width: 390px;
+            height: 390px;
+            background: var(--accent-1);
+            top: -110px;
+            left: -110px;
+        }
+        .blob-2 {
+            width: 350px;
+            height: 350px;
+            background: var(--accent-2);
+            bottom: 8%;
+            right: -90px;
+        }
+
+        /* Container Utama */
+        .container {
+            width: 100%;
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Komponen Glassmorphism */
+        .glass-card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .gradient-text {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* =====================================================================
+           3. NAVIGASI STICKY & DOUBLE PAGE SWITCHER
+           ===================================================================== */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg-glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-glass);
+            transition: var(--transition);
+        }
+
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 74px;
+            gap: 0.85rem;
+        }
+
+        .brand {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.15rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .brand-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent-gradient);
+            flex-shrink: 0;
+        }
+
+        /* Tab Switcher Halaman (Double Page) */
+        .page-tabs {
+            display: flex;
+            background: rgba(148, 163, 184, 0.16);
+            padding: 4px;
+            border-radius: var(--radius-full);
+            border: 1px solid var(--border-glass);
+        }
+
+        .page-tab-btn {
+            padding: 0.45rem 0.95rem;
+            border-radius: var(--radius-full);
+            font-size: 0.84rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .page-tab-btn.active {
+            background: var(--accent-gradient);
+            color: #ffffff;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.4rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            position: relative;
+            padding: 0.25rem 0;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent-1);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gradient);
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        .nav-links a.active::after,
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+        }
+
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-full);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-glass);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .icon-btn:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-1);
+        }
+
+        .hamburger {
+            display: none;
+        }
+
+        /* =====================================================================
+           4. SISTEM DOUBLE PAGE (TRANSISI HALAMAN)
+           ===================================================================== */
+        .page-view {
+            display: none;
+            animation: pageFadeIn 0.45s ease forwards;
+        }
+
+        .page-view.active {
+            display: block;
+        }
+
+        @keyframes pageFadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* =====================================================================
+           5. SECTION UMUM & ANIMASI SCROLL
+           ===================================================================== */
+        section {
+            padding: 5.5rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 640px;
+            margin: 0 auto 3.5rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 0.35rem 1rem;
+            border-radius: var(--radius-full);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            background: rgba(13, 148, 136, 0.12);
+            color: var(--accent-1);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =====================================================================
+           6. HALAMAN 1: HERO & FOTO PROFIL (LOAD DARI foto.jpg)
+           ===================================================================== */
+        .hero {
+            padding-top: 4rem;
+            padding-bottom: 5rem;
+            min-height: calc(100vh - 74px);
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-greeting {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--accent-1);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .hero-name {
+            font-size: clamp(2rem, 4.4vw, 3.25rem);
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.02em;
+            word-break: break-word;
+        }
+
+        .hero-tagline {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+            font-weight: 600;
+            color: var(--text-secondary);
+            min-height: 2.2rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.2em;
+            background: var(--accent-2);
+            margin-left: 3px;
+            vertical-align: middle;
+            animation: blink 0.8s infinite;
+        }
+
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+
+        .hero-desc {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            max-width: 550px;
+            margin-bottom: 2rem;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.85rem 1.7rem;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background: var(--accent-gradient);
+            color: #ffffff;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            filter: brightness(1.08);
+        }
+
+        .btn-secondary {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-glass);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-1);
+        }
+
+        /* Kartu Foto Profil */
+        .profile-card {
+            padding: 2rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .avatar-wrapper {
+            position: relative;
+            width: 210px;
+            height: 210px;
+            border-radius: 50%;
+            padding: 6px;
+            background: var(--accent-gradient);
+            box-shadow: var(--shadow-glow);
+            transition: var(--transition);
+            margin-bottom: 1.25rem;
+        }
+
+        .avatar-wrapper:hover {
+            transform: scale(1.03);
+        }
+
+        .avatar-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            background: var(--bg-secondary);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .avatar-default {
+            width: 100%;
+            height: 100%;
+            background: var(--accent-gradient);
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 2.75rem;
+            letter-spacing: 0.03em;
+            text-transform: lowercase;
+        }
+
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .photo-info-text {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+            font-weight: 500;
+        }
+
+        /* =====================================================================
+           7. TENTANG SAYA & INFO CARDS
+           ===================================================================== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .about-bio {
+            padding: 2.25rem;
+        }
+
+        .about-bio p {
+            color: var(--text-secondary);
+            margin-bottom: 1.15rem;
+            font-size: 1.02rem;
+        }
+
+        .info-cards {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .info-item {
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .info-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: var(--radius-md);
+            background: rgba(13, 148, 136, 0.12);
+            color: var(--accent-1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .info-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-weight: 600;
+        }
+
+        .info-value {
+            font-weight: 600;
+            font-size: 0.98rem;
+        }
+
+        /* =====================================================================
+           8. KEAHLIAN (SKILLS PROGRESS BARS)
+           ===================================================================== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            padding: 1.75rem;
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .skill-percent {
+            color: var(--accent-1);
+            font-size: 0.9rem;
+        }
+
+        .progress-track {
+            width: 100%;
+            height: 10px;
+            background: rgba(148, 163, 184, 0.2);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0;
+            background: var(--accent-gradient);
+            border-radius: var(--radius-full);
+            transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        /* =====================================================================
+           9. TIMELINE PENDIDIKAN & PENGALAMAN
+           ===================================================================== */
+        .timeline {
+            position: relative;
+            max-width: 780px;
+            margin: 0 auto;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--accent-gradient);
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding: 1.75rem;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -2.05rem;
+            top: 2rem;
+            width: 17px;
+            height: 17px;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            border: 4px solid var(--accent-1);
+            box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.15);
+        }
+
+        .timeline-date {
+            display: inline-block;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--accent-2);
+            margin-bottom: 0.4rem;
+        }
+
+        .timeline-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-place {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+        }
+
+        .timeline-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* =====================================================================
+           10. PROYEK (GRID KARTU HOVER)
+           ===================================================================== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+            gap: 1.75rem;
+        }
+
+        .project-card {
+            padding: 1.85rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-glow);
+            border-color: rgba(13, 148, 136, 0.45);
+        }
+
+        .project-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-md);
+            background: var(--accent-gradient);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+        }
+
+        .project-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.65rem;
+        }
+
+        .project-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 0.3rem 0.75rem;
+            border-radius: var(--radius-full);
+            background: rgba(37, 99, 235, 0.12);
+            color: var(--accent-2);
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--accent-1);
+            transition: var(--transition);
+        }
+
+        .project-link:hover {
+            gap: 0.7rem;
+        }
+
+        /* =====================================================================
+           11. KONTAK & SOSIAL MEDIA
+           ===================================================================== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 2.5rem;
+            align-items: start;
+        }
+
+        .contact-info {
+            padding: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.85rem;
+            margin-top: 1.75rem;
+        }
+
+        .social-btn {
+            width: 46px;
+            height: 46px;
+            border-radius: var(--radius-md);
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-glass);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            transition: var(--transition);
+        }
+
+        .social-btn:hover {
+            background: var(--accent-gradient);
+            color: #ffffff;
+            transform: translateY(-3px);
+        }
+
+        .contact-form {
+            padding: 2.25rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.45rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-1);
+            box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.2);
+        }
+
+        .form-error {
+            color: #ef4444;
+            font-size: 0.8rem;
+            margin-top: 0.35rem;
+            display: none;
+        }
+
+        .form-success {
+            margin-top: 1rem;
+            padding: 0.9rem 1.15rem;
+            border-radius: var(--radius-md);
+            background: rgba(16, 185, 129, 0.14);
+            color: #10b981;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        /* =====================================================================
+           12. HALAMAN 2: KISAH MASUK SMK NEGERI 1 BANGKINANG
+           ===================================================================== */
+        .story-hero {
+            padding: 4.5rem 0 3rem;
+            text-align: center;
+        }
+
+        .story-banner {
+            padding: 3rem 2rem;
+            max-width: 880px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .story-meta {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.85rem;
+            margin-top: 1.5rem;
+            font-size: 0.88rem;
+        }
+
+        .story-meta span {
+            background: rgba(13, 148, 136, 0.12);
+            color: var(--accent-1);
+            padding: 0.35rem 0.95rem;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+        }
+
+        .story-container {
+            max-width: 820px;
+            margin: 0 auto;
+            padding-bottom: 5rem;
+        }
+
+        .story-chapter {
+            padding: 2.25rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .chapter-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--accent-gradient);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .story-chapter h3 {
+            font-size: 1.35rem;
+            margin-bottom: 0.85rem;
+        }
+
+        .story-chapter p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-size: 1.02rem;
+        }
+
+        .story-quote {
+            border-left: 4px solid var(--accent-1);
+            padding: 1rem 1.5rem;
+            background: rgba(13, 148, 136, 0.08);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            font-style: italic;
+            color: var(--text-primary);
+            margin: 1.5rem 0;
+            font-weight: 500;
+        }
+
+        /* =====================================================================
+           13. FOOTER
+           ===================================================================== */
+        footer {
+            border-top: 1px solid var(--border-glass);
+            padding: 2rem 0;
+            background: var(--bg-glass);
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* =====================================================================
+           14. RESPONSIVE & ACCESSIBILITY REDUCED MOTION
+           ===================================================================== */
+        @media (max-width: 900px) {
+            .hero-grid,
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding-top: 2.5rem;
+            }
+
+            .profile-card {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 74px;
+                left: 0;
+                right: 0;
+                background: var(--bg-secondary);
+                flex-direction: column;
+                padding: 1.5rem;
+                gap: 1.25rem;
+                border-bottom: 1px solid var(--border-glass);
+                box-shadow: var(--shadow-md);
+                transform: translateY(-130%);
+                opacity: 0;
+                pointer-events: none;
+                transition: var(--transition);
+            }
+
+            .nav-links.open {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .hamburger {
+                display: inline-flex;
+            }
+
+            .brand span:last-child {
+                font-size: 0.98rem;
+            }
+
+            .page-tab-btn {
+                padding: 0.4rem 0.7rem;
+                font-size: 0.76rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Latar Belakang Dekoratif -->
+    <div class="bg-blob blob-1" aria-hidden="true"></div>
+    <div class="bg-blob blob-2" aria-hidden="true"></div>
+
+    <!-- =====================================================================
+         NAVIGASI UTAMA (STICKY + DOUBLE PAGE SWITCHER)
+         ===================================================================== -->
+    <header>
+        <div class="container nav-wrapper">
+            <a href="#beranda" class="brand" data-target-page="portfolio">
+                <span class="brand-dot"></span>
+                <span>m.DICKA</span>
+            </a>
+
+            <!-- Navigasi Perpindahan Halaman (Double Page) -->
+            <div class="page-tabs" role="tablist" aria-label="Pilih Halaman">
+                <button class="page-tab-btn active" id="tab-portfolio" role="tab" aria-selected="true" data-target-page="portfolio">
+                    Profil & Portofolio
+                </button>
+                <button class="page-tab-btn" id="tab-kisah" role="tab" aria-selected="false" data-target-page="kisah">
+                    Kisah SMK N 1 Bangkinang
+                </button>
+            </div>
+
+            <!-- Menu Section (Untuk Halaman Portofolio) -->
+            <nav aria-label="Navigasi Bagian">
+                <ul class="nav-links" id="nav-menu">
+                    <li><a href="#beranda" class="nav-item active">Beranda</a></li>
+                    <li><a href="#tentang" class="nav-item">Tentang</a></li>
+                    <li><a href="#keahlian" class="nav-item">Keahlian</a></li>
+                    <li><a href="#pengalaman" class="nav-item">Pendidikan</a></li>
+                    <li><a href="#proyek" class="nav-item">Proyek</a></li>
+                    <li><a href="#kontak" class="nav-item">Kontak</a></li>
+                </ul>
+            </nav>
+
+            <!-- Tombol Tema & Hamburger -->
+            <div class="nav-actions">
+                <button class="icon-btn" id="theme-toggle" aria-label="Ubah Mode Gelap atau Terang" title="Ganti Tema">
+                    <svg id="theme-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg>
+                </button>
+                <button class="icon-btn hamburger" id="menu-toggle" aria-label="Buka Menu Navigasi" aria-expanded="false">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- =================================================================
+             HALAMAN 1: PROFIL & PORTOFOLIO PERSONAL
+             ================================================================= -->
+        <div id="page-portfolio" class="page-view active">
+            
+            <!-- 1. HERO SECTION -->
+            <section id="beranda" class="hero">
+                <div class="container hero-grid">
+                    <div class="hero-content reveal">
+                        <p class="hero-greeting">👋 Halo, Selamat Datang di Portofolio Saya</p>
+                        <h1 class="hero-name">m.<span class="gradient-text">DICKA.ERMANSYAH</span></h1>
+                        
+                        <!-- Tagline Efek Mengetik -->
+                        <div class="hero-tagline" aria-live="polite">
+                            <span id="typing-text"></span><span class="typing-cursor" aria-hidden="true"></span>
+                        </div>
+
+                        <p class="hero-desc">
+                            Pelajar aktif di SMK Negeri 1 Bangkinang yang bersemangat mempelajari pengembangan web modern, desain antarmuka pengguna, dan teknologi digital kreatif.
+                        </p>
+
+                        <div class="btn-group">
+                            <a href="#kontak" class="btn btn-primary">
+                                Hubungi Saya
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                            </a>
+                            <a href="#proyek" class="btn btn-secondary">Lihat Proyek</a>
+                            <button type="button" class="btn btn-secondary" data-target-page="kisah">
+                                📖 Baca Kisah SMK Saya
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Kartu Foto Profil (Diload langsung dari foto.jpg) -->
+                    <div class="glass-card profile-card reveal">
+                        <div class="avatar-wrapper" title="Foto Profil m.DICKA.ERMANSYAH">
+                            <div class="avatar-inner">
+                                <!-- Fallback ke inisial 'said' jika foto.jpg tidak ditemukan/gagal dimuat -->
+                                <div class="avatar-default" id="avatar-default" style="display: none;">
+                                    <span>KING DICKA</span>
+                                </div>
+                                <img id="avatar-img" class="avatar-img" src="foto.jpg" alt="Foto Profil m.DICKA.ERMANSYAH" onerror="this.style.display='none'; document.getElementById('avatar-default').style.display='flex';">
+                            </div>
+                        </div>
+                        <p class="photo-info-text">m.DICKA.ERMANSYAH</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. TENTANG SAYA -->
+            <section id="tentang">
+                <div class="container">
+                    <div class="section-header reveal">
+                        <span class="section-badge">Profil Singkat</span>
+                        <h2 class="section-title">Tentang <span class="gradient-text">Saya</span></h2>
+                        <p class="section-subtitle">Mengenal lebih dekat latar belakang, semangat belajar, dan tujuan saya.</p>
+                    </div>
+
+                    <div class="about-grid">
+                        <div class="glass-card about-bio reveal">
+                            <p>
+                                Halo! Saya <strong>m.DICKA.ERMANSYAH</strong>, seorang pelajar yang memiliki rasa ingin tahu tinggi dan ketertarikan mendalam pada dunia teknologi informasi serta pengembangan web.
+                            </p>
+                            <p>
+                                Menempuh pendidikan di <strong>SMK Negeri 1 Bangkinang</strong> memberikan saya pengalaman praktik yang berharga, melatih kedisiplinan, serta mengajarkan cara membangun karya digital yang bermanfaat.
+                            </p>
+                            <p>
+                                Di waktu luang, saya senang mengeksplorasi tampilan antarmuka website modern, mengerjakan proyek mandiri, dan terus mengasah keterampilan pemrograman.
+                            </p>
+                        </div>
+
+                        <div class="info-cards reveal">
+                            <div class="glass-card info-item">
+                                <div class="info-icon">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                </div>
+                                <div>
+                                    <div class="info-label">Lokasi</div>
+                                    <div class="info-value">Bangkinang, Kampar, Riau</div>
+                                </div>
+                            </div>
+
+                            <div class="glass-card info-item">
+                                <div class="info-icon">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+                                </div>
+                                <div>
+                                    <div class="info-label">Pendidikan</div>
+                                    <div class="info-value">SMK Negeri 1 Bangkinang</div>
+                                </div>
+                            </div>
+
+                            <div class="glass-card info-item">
+                                <div class="info-icon">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                                </div>
+                                <div>
+                                    <div class="info-label">Minat Utama</div>
+                                    <div class="info-value">Web Development & UI/UX Design</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. KEAHLIAN -->
+            <section id="keahlian">
+                <div class="container">
+                    <div class="section-header reveal">
+                        <span class="section-badge">Kompetensi</span>
+                        <h2 class="section-title">Keahlian & <span class="gradient-text">Teknologi</span></h2>
+                        <p class="section-subtitle">Kemampuan teknis yang terus saya pelajari dan kembangkan.</p>
+                    </div>
+
+                    <div class="skills-grid">
+                        <div class="glass-card skill-card reveal">
+                            <div class="skill-header">
+                                <span>HTML5 & Struktur Semantik</span>
+                                <span class="skill-percent">92%</span>
+                            </div>
+                            <div class="progress-track">
+                                <div class="progress-fill" data-width="92%"></div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card skill-card reveal">
+                            <div class="skill-header">
+                                <span>CSS3, Flexbox & Grid</span>
+                                <span class="skill-percent">88%</span>
+                            </div>
+                            <div class="progress-track">
+                                <div class="progress-fill" data-width="88%"></div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card skill-card reveal">
+                            <div class="skill-header">
+                                <span>JavaScript (DOM & ES6+)</span>
+                                <span class="skill-percent">82%</span>
+                            </div>
+                            <div class="progress-track">
+                                <div class="progress-fill" data-width="82%"></div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card skill-card reveal">
+                            <div class="skill-header">
+                                <span>Desain UI/UX & Responsif</span>
+                                <span class="skill-percent">86%</span>
+                            </div>
+                            <div class="progress-track">
+                                <div class="progress-fill" data-width="86%"></div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card skill-card reveal">
+                            <div class="skill-header">
+                                <span>Jaringan Dasar & Hardware</span>
+                                <span class="skill-percent">80%</span>
+                            </div>
+                            <div class="progress-track">
+                                <div class="progress-fill" data-width="80%"></div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card skill-card reveal">
+                            <div class="skill-header">
+                                <span>Git & Manajemen Proyek</span>
+                                <span class="skill-percent">76%</span>
+                            </div>
+                            <div class="progress-track">
+                                <div class="progress-fill" data-width="76%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. PENGALAMAN & PENDIDIKAN -->
+            <section id="pengalaman">
+                <div class="container">
+                    <div class="section-header reveal">
+                        <span class="section-badge">Perjalanan</span>
+                        <h2 class="section-title">Pendidikan & <span class="gradient-text">Pengalaman</span></h2>
+                        <p class="section-subtitle">Jejak langkah akademik dan pencapaian pembelajaran saya.</p>
+                    </div>
+
+                    <div class="timeline">
+                        <div class="glass-card timeline-item reveal">
+                            <span class="timeline-dot"></span>
+                            <span class="timeline-date">Sekarang — Aktif</span>
+                            <h3 class="timeline-title">Siswa Kejuruan Teknologi</h3>
+                            <div class="timeline-place">SMK Negeri 1 Bangkinang</div>
+                            <p class="timeline-desc">
+                                Mendalami praktik pemrograman web, perakitan serta konfigurasi sistem komputer, dan aktif berkolaborasi dalam proyek praktik kejuruan.
+                            </p>
+                        </div>
+
+                        <div class="glass-card timeline-item reveal">
+                            <span class="timeline-dot"></span>
+                            <span class="timeline-date">Proyek Mandiri</span>
+                            <h3 class="timeline-title">Pengembang Web Portofolio & Aplikasi Mini</h3>
+                            <div class="timeline-place">Bangkinang, Riau</div>
+                            <p class="timeline-desc">
+                                Merancang dan membangun berbagai antarmuka website interaktif berbasis HTML, CSS, dan JavaScript murni dengan mengutamakan kecepatan dan estetika.
+                            </p>
+                        </div>
+
+                        <div class="glass-card timeline-item reveal">
+                            <span class="timeline-dot"></span>
+                            <span class="timeline-date">Pendidikan Menengah Pertama</span>
+                            <h3 class="timeline-title">Lulusan SMP</h3>
+                            <div class="timeline-place">Bangkinang, Kabupaten Kampar</div>
+                            <p class="timeline-desc">
+                                Menyelesaikan pendidikan tingkat pertama dan mulai menemukan ketertarikan besar pada dunia komputer serta logika pemrograman.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. PROYEK -->
+            <section id="proyek">
+                <div class="container">
+                    <div class="section-header reveal">
+                        <span class="section-badge">Karya Pilihan</span>
+                        <h2 class="section-title">Proyek <span class="gradient-text">Terbaru</span></h2>
+                        <p class="section-subtitle">Beberapa hasil karya dan latihan pemrograman yang telah saya buat.</p>
+                    </div>
+
+                    <div class="projects-grid">
+                        <article class="glass-card project-card reveal">
+                            <div>
+                                <div class="project-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                                </div>
+                                <h3 class="project-title">Website Profil Personal</h3>
+                                <p class="project-desc">
+                                    Website portofolio modern dengan foto statis dari file, mode gelap/terang, dan desain glassmorphism interaktif.
+                                </p>
+                                <div class="project-tags">
+                                    <span class="tag">HTML5</span>
+                                    <span class="tag">CSS3</span>
+                                    <span class="tag">JavaScript</span>
+                                </div>
+                            </div>
+                            <a href="#beranda" class="project-link">
+                                Lihat Detail
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                            </a>
+                        </article>
+
+                        <article class="glass-card project-card reveal">
+                            <div>
+                                <div class="project-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                                </div>
+                                <h3 class="project-title">Catatan Tugas Pelajar</h3>
+                                <p class="project-desc">
+                                    Aplikasi web pencatat jadwal pelajaran dan tugas sekolah harian dengan penyimpanan otomatis di browser pengguna.
+                                </p>
+                                <div class="project-tags">
+                                    <span class="tag">LocalStorage</span>
+                                    <span class="tag">DOM API</span>
+                                    <span class="tag">Responsive</span>
+                                </div>
+                            </div>
+                            <a href="#kontak" class="project-link">
+                                Lihat Detail
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                            </a>
+                        </article>
+
+                        <article class="glass-card project-card reveal">
+                            <div>
+                                <div class="project-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                                </div>
+                                <h3 class="project-title">Jurnal Kisah SMK N 1 Bangkinang</h3>
+                                <p class="project-desc">
+                                    Halaman cerita interaktif yang mendokumentasikan pengalaman berkesan sejak mendaftar hingga belajar di SMK N 1 Bangkinang.
+                                </p>
+                                <div class="project-tags">
+                                    <span class="tag">Storytelling</span>
+                                    <span class="tag">UI Design</span>
+                                    <span class="tag">Double Page</span>
+                                </div>
+                            </div>
+                            <button type="button" class="project-link" data-target-page="kisah">
+                                Baca Kisahnya
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                            </button>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. KONTAK -->
+            <section id="kontak">
+                <div class="container">
+                    <div class="section-header reveal">
+                        <span class="section-badge">Terhubung</span>
+                        <h2 class="section-title">Hubungi <span class="gradient-text">Saya</span></h2>
+                        <p class="section-subtitle">Punya pertanyaan, saran, atau ingin berkolaborasi? Silakan kirim pesan.</p>
+                    </div>
+
+                    <div class="contact-grid">
+                        <div class="glass-card contact-info reveal">
+                            <h3 style="font-size: 1.35rem; margin-bottom: 0.75rem;">Mari Berkenalan!</h3>
+                            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+                                Saya terbuka untuk diskusi seputar pemrograman web, tugas sekolah, maupun proyek kreatif bersama teman-teman.
+                            </p>
+
+                            <div style="display: grid; gap: 0.85rem; font-size: 0.95rem;">
+                                <div><strong>Nama:</strong> m.DICKA.ERMANSYAH</div>
+                                <div><strong>Sekolah:</strong> SMK Negeri 1 Bangkinang</div>
+                                <div><strong>Domisili:</strong> Bangkinang, Riau</div>
+                            </div>
+
+                            <div class="social-links" aria-label="Tautan Media Sosial">
+                                <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="GitHub" title="GitHub">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                </a>
+                                <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="LinkedIn" title="LinkedIn">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                                </a>
+                                <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Instagram" title="Instagram">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                                </a>
+                                <a href="mailto:mdickaermansyah@example.com" class="social-btn" aria-label="Email" title="Kirim Email">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Form Kontak dengan Validasi -->
+                        <form class="glass-card contact-form reveal" id="contact-form" novalidate>
+                            <div class="form-group">
+                                <label for="contact-name" class="form-label">Nama Lengkap</label>
+                                <input type="text" id="contact-name" class="form-control" placeholder="Masukkan nama Anda" required>
+                                <div class="form-error" id="error-name">Nama wajib diisi (minimal 2 karakter).</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contact-email" class="form-label">Alamat Email</label>
+                                <input type="email" id="contact-email" class="form-control" placeholder="nama@email.com" required>
+                                <div class="form-error" id="error-email">Masukkan alamat email yang valid.</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contact-message" class="form-label">Pesan</label>
+                                <textarea id="contact-message" rows="4" class="form-control" placeholder="Tulis pesan Anda di sini..." required></textarea>
+                                <div class="form-error" id="error-message">Pesan tidak boleh kosong (minimal 10 karakter).</div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">
+                                Kirim Pesan Sekarang
+                            </button>
+
+                            <div class="form-success" id="form-success" role="status">
+                                ✅ Terima kasih! Pesan Anda untuk m.DICKA.ERMANSYAH berhasil terkirim.
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- =================================================================
+             HALAMAN 2: KISAH SAYA MASUK SMK NEGERI 1 BANGKINANG
+             ================================================================= -->
+        <div id="page-kisah" class="page-view">
+            <section class="story-hero">
+                <div class="container">
+                    <div class="glass-card story-banner">
+                        <span class="section-badge">Catatan Perjalanan</span>
+                        <h1 class="section-title" style="font-size: clamp(1.85rem, 4vw, 2.75rem);">
+                            Kisah Saya Masuk <span class="gradient-text">SMK Negeri 1 Bangkinang</span>
+                        </h1>
+                        <p class="section-subtitle" style="max-width: 650px; margin: 0 auto;">
+                            Sebuah langkah awal menuju dunia kejuruan, teknologi, dan kemandirian yang mengubah cara pandang saya terhadap masa depan.
+                        </p>
+                        <div class="story-meta">
+                            <span>✍️ Ditulis oleh: m.DICKA.ERMANSYAH</span>
+                            <span>🏫 SMK Negeri 1 Bangkinang</span>
+                            <span>📍 Bangkinang, Kampar</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="container story-container">
+                <!-- Bab 1 -->
+                <article class="glass-card story-chapter">
+                    <div class="chapter-number">1</div>
+                    <h3>Awal Mula Impian dan Pilihan Kejuruan</h3>
+                    <p>
+                        Menjelang kelulusan dari bangku SMP, saya mulai memikirkan secara serius ke mana arah pendidikan berikutnya akan ditempuh. Sejak lama saya memiliki ketertarikan kuat pada bidang komputer, pemrograman web, dan keterampilan praktik yang langsung bisa diterapkan.
+                    </p>
+                    <p>
+                        Di antara berbagai pilihan sekolah menengah di Kabupaten Kampar, nama <strong>SMK Negeri 1 Bangkinang</strong> selalu menjadi pilihan utama saya. Sekolah ini dikenal memiliki lingkungan belajar yang disiplin, fasilitas laboratorium praktik yang lengkap, serta rekam jejak prestasi yang membanggakan.
+                    </p>
+                </article>
+
+                <!-- Bab 2 -->
+                <article class="glass-card story-chapter">
+                    <div class="chapter-number">2</div>
+                    <h3>Perjuangan Mendaftar dan Menunggu Pengumuman</h3>
+                    <p>
+                        Masa Penerimaan Peserta Didik Baru (PPDB) menjadi pengalaman yang penuh antusiasme sekaligus mendebarkan. Saya menyiapkan seluruh dokumen persyaratan dengan cermat, berdiskusi dengan keluarga mengenai jurusan yang paling tepat, dan terus berdoa agar diberikan hasil terbaik.
+                    </p>
+                    <blockquote class="story-quote">
+                        "Saat melihat nama saya resmi tercantum sebagai siswa yang diterima di SMK Negeri 1 Bangkinang, rasa syukur dan bangga langsung menyelimuti hati saya dan orang tua."
+                    </blockquote>
+                    <p>
+                        Momen pengumuman tersebut menjadi penyemangat besar bagi saya untuk belajar lebih sungguh-sungguh dan membuktikan bahwa pilihan ini adalah langkah terbaik.
+                    </p>
+                </article>
+
+                <!-- Bab 3 -->
+                <article class="glass-card story-chapter">
+                    <div class="chapter-number">3</div>
+                    <h3>Hari Pertama, MPLS, dan Lingkungan Baru</h3>
+                    <p>
+                        Melangkahkan kaki ke halaman SMK Negeri 1 Bangkinang untuk pertama kalinya memberikan kesan yang tidak terlupakan. Melalui kegiatan Masa Pengenalan Lingkungan Sekolah (MPLS), saya berkenalan dengan bapak dan ibu guru yang membimbing penuh kesabaran serta teman-teman baru dari berbagai daerah di sekitar Bangkinang.
+                    </p>
+                    <p>
+                        Suasana pembelajaran di SMK terasa sangat hidup karena memadukan teori kelas dengan praktik langsung, melatih tanggung jawab, kerja sama tim, dan kesiapan menghadapi dunia kerja.
+                    </p>
+                </article>
+
+                <!-- Bab 4 -->
+                <article class="glass-card story-chapter">
+                    <div class="chapter-number">4</div>
+                    <h3>Harapan dan Langkah ke Depan</h3>
+                    <p>
+                        Kini, sebagai siswa <strong>SMK Negeri 1 Bangkinang</strong>, saya bertekad untuk terus mengasah kemampuan di bidang teknologi web dan pengembangan digital. Website portofolio ini merupakan salah satu wujud nyata hasil proses belajar saya.
+                    </p>
+                    <p>
+                        Saya percaya bahwa perjalanan di sekolah ini akan menjadi bekal berharga untuk meraih cita-cita dan memberikan kontribusi positif bagi keluarga, daerah Bangkinang, serta masa depan.
+                    </p>
+
+                    <div style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 1rem;">
+                        <button type="button" class="btn btn-primary" data-target-page="portfolio">
+                            ← Kembali ke Profil & Portofolio
+                        </button>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <!-- =====================================================================
+         FOOTER
+         ===================================================================== -->
+    <footer>
+        <div class="container footer-inner">
+            <p>&copy; <span id="current-year"></span> <strong>m.DICKA.ERMANSYAH</strong> — SMK Negeri 1 Bangkinang.</p>
+            <button type="button" class="btn btn-secondary" id="back-to-top" style="padding: 0.55rem 1.15rem; font-size: 0.85rem;">
+                ↑ Kembali ke Atas
+            </button>
+        </div>
+    </footer>
+
+    <!-- =====================================================================
+         JAVASCRIPT MURNI (VANILLA JS)
+         ===================================================================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            /* -----------------------------------------------------------------
+               1. TAHUN OTOMATIS & TOMBOL KEMBALI KE ATAS
+               ----------------------------------------------------------------- */
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            document.getElementById('back-to-top').addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            /* -----------------------------------------------------------------
+               2. MODE GELAP & TERANG (SISTEM + LOCALSTORAGE)
+               ----------------------------------------------------------------- */
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = document.getElementById('theme-icon');
+            const htmlEl = document.documentElement;
+
+            const sunSVG = `<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>`;
+            const moonSVG = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>`;
+
+            function applyTheme(theme) {
+                htmlEl.setAttribute('data-theme', theme);
+                themeIcon.innerHTML = theme === 'dark' ? sunSVG : moonSVG;
+                localStorage.setItem('mdicka_theme', theme);
+            }
+
+            const savedTheme = localStorage.getItem('mdicka_theme');
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            applyTheme(savedTheme ? savedTheme : (systemPrefersDark ? 'dark' : 'light'));
+
+            themeToggle.addEventListener('click', () => {
+                const current = htmlEl.getAttribute('data-theme');
+                applyTheme(current === 'dark' ? 'light' : 'dark');
+            });
+
+            /* -----------------------------------------------------------------
+               3. DOUBLE PAGE SWITCHER (PORTOFOLIO <-> KISAH SMK N 1 BANGKINANG)
+               ----------------------------------------------------------------- */
+            const pagePortfolio = document.getElementById('page-portfolio');
+            const pageKisah = document.getElementById('page-kisah');
+            const tabPortfolio = document.getElementById('tab-portfolio');
+            const tabKisah = document.getElementById('tab-kisah');
+            const navMenu = document.getElementById('nav-menu');
+
+            function switchPage(target) {
+                if (target === 'kisah') {
+                    pagePortfolio.classList.remove('active');
+                    pageKisah.classList.add('active');
+                    tabPortfolio.classList.remove('active');
+                    tabPortfolio.setAttribute('aria-selected', 'false');
+                    tabKisah.classList.add('active');
+                    tabKisah.setAttribute('aria-selected', 'true');
+                    navMenu.style.visibility = 'hidden';
+                } else {
+                    pageKisah.classList.remove('active');
+                    pagePortfolio.classList.add('active');
+                    tabKisah.classList.remove('active');
+                    tabKisah.setAttribute('aria-selected', 'false');
+                    tabPortfolio.classList.add('active');
+                    tabPortfolio.setAttribute('aria-selected', 'true');
+                    navMenu.style.visibility = 'visible';
+                }
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            document.querySelectorAll('[data-target-page]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    switchPage(btn.getAttribute('data-target-page'));
+                });
+            });
+
+            /* -----------------------------------------------------------------
+               4. MENU HAMBURGER MOBILE & ACTIVE SCROLL SPY
+               ----------------------------------------------------------------- */
+            const menuToggle = document.getElementById('menu-toggle');
+            const navItems = document.querySelectorAll('.nav-item');
+
+            menuToggle.addEventListener('click', () => {
+                const isOpen = navMenu.classList.toggle('open');
+                menuToggle.setAttribute('aria-expanded', isOpen);
+            });
+
+            navItems.forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('open');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+
+            const sections = document.querySelectorAll('#page-portfolio section[id]');
+            window.addEventListener('scroll', () => {
+                if (!pagePortfolio.classList.contains('active')) return;
+                let currentId = '';
+                sections.forEach(sec => {
+                    const top = sec.offsetTop - 130;
+                    if (window.scrollY >= top) {
+                        currentId = sec.getAttribute('id');
+                    }
+                });
+
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.getAttribute('href') === `#${currentId}`) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+
+            /* -----------------------------------------------------------------
+               5. EFEK MENGETIK (TYPING EFFECT) DI HERO
+               ----------------------------------------------------------------- */
+            const typingEl = document.getElementById('typing-text');
+            const roles = [
+                'Siswa SMK Negeri 1 Bangkinang',
+                'Web Developer Pemula',
+                'UI/UX Design Enthusiast',
+                'Kreator Teknologi Digital'
+            ];
+            let roleIdx = 0;
+            let charIdx = 0;
+            let isDeleting = false;
+
+            function typeLoop() {
+                const currentRole = roles[roleIdx];
+                if (isDeleting) {
+                    typingEl.textContent = currentRole.substring(0, charIdx - 1);
+                    charIdx--;
+                } else {
+                    typingEl.textContent = currentRole.substring(0, charIdx + 1);
+                    charIdx++;
+                }
+
+                let delay = isDeleting ? 45 : 90;
+
+                if (!isDeleting && charIdx === currentRole.length) {
+                    delay = 1800;
+                    isDeleting = true;
+                } else if (isDeleting && charIdx === 0) {
+                    isDeleting = false;
+                    roleIdx = (roleIdx + 1) % roles.length;
+                    delay = 350;
+                }
+
+                setTimeout(typeLoop, delay);
+            }
+            typeLoop();
+
+            /* -----------------------------------------------------------------
+               6. ANIMASI SCROLL & PROGRESS BAR (INTERSECTION OBSERVER)
+               ----------------------------------------------------------------- */
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        entry.target.querySelectorAll('.progress-fill').forEach(bar => {
+                            bar.style.width = bar.getAttribute('data-width');
+                        });
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+            /* -----------------------------------------------------------------
+               7. VALIDASI FORM KONTAK SISI KLIEN
+               ----------------------------------------------------------------- */
+            const contactForm = document.getElementById('contact-form');
+            const nameInput = document.getElementById('contact-name');
+            const emailInput = document.getElementById('contact-email');
+            const msgInput = document.getElementById('contact-message');
+            const errName = document.getElementById('error-name');
+            const errEmail = document.getElementById('error-email');
+            const errMsg = document.getElementById('error-message');
+            const formSuccess = document.getElementById('form-success');
+
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                let valid = true;
+
+                if (nameInput.value.trim().length < 2) {
+                    errName.style.display = 'block';
+                    valid = false;
+                } else {
+                    errName.style.display = 'none';
+                }
+
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(emailInput.value.trim())) {
+                    errEmail.style.display = 'block';
+                    valid = false;
+                } else {
+                    errEmail.style.display = 'none';
+                }
+
+                if (msgInput.value.trim().length < 10) {
+                    errMsg.style.display = 'block';
+                    valid = false;
+                } else {
+                    errMsg.style.display = 'none';
+                }
+
+                if (valid) {
+                    formSuccess.style.display = 'block';
+                    contactForm.reset();
+                    setTimeout(() => {
+                        formSuccess.style.display = 'none';
+                    }, 5000);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
